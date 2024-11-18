@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Builder
-public class person extends BaseModel {
+public class Person extends BaseModel {
 
     @Column(name = "first_name")
     private String firstName;
@@ -26,5 +26,9 @@ public class person extends BaseModel {
     private Gender gender;
     @Temporal(TemporalType.DATE)
     private Date dob;
+    @Embedded
+    private Address address;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }
