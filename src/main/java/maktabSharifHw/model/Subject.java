@@ -2,10 +2,7 @@ package maktabSharifHw.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +11,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table
 @ToString
 public class Subject extends BaseModel {
@@ -22,13 +18,14 @@ public class Subject extends BaseModel {
     private String subjectTitle;
     @Column(name = "subject_description")
     private String subjectDescription;
-    @Column(name = "number_of_books")
-    private Long numberOfBooks;
+   // @Column(name = "number_of_books")
+   // private Long numberOfBooks= this.getBooks();
 
-    @ManyToMany(mappedBy = "subjects")
+    @OneToMany(mappedBy = "subjects")
     private List<Book> books = new ArrayList<>();
 
-    public void setNumberOfBooks(List<Book> books) {
-        this.numberOfBooks = (long) books.size();
-    }
+//    public Long getBooks() {
+//        return (long) books.size();
+//    }
+
 }

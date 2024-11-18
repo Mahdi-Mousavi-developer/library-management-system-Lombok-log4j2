@@ -1,9 +1,6 @@
 package maktabSharifHw.model;
-
-
 import lombok.Setter;
 import lombok.Getter;
-
 import javax.persistence.*;
 import java.util.Date;
 

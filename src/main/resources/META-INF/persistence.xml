@@ -3,7 +3,7 @@
     <persistence-unit name="jdbc-postgres">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>maktabSharifHw.model.Librarian</class>
-        <class>maktabSharifHw.model.Member</class>
+        <class>maktabSharifHw.model.Memberss</class>
         <class>maktabSharifHw.model.Book</class>
         <class>maktabSharifHw.model.Subject</class>
         <properties>

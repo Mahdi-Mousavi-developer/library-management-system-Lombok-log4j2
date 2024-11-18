@@ -13,14 +13,16 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Builder
-public class Person extends BaseModel {
 
+public abstract class  Person extends BaseModel {
+
+    private String username;
+    private String password;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "national_code")
+    @Column(name = "national_code", unique = true)
     private String nationalCode;
     @Enumerated(EnumType.STRING)
     private Gender gender;

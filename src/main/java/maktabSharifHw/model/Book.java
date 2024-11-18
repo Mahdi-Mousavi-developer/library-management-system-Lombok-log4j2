@@ -4,15 +4,13 @@ package maktabSharifHw.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+
 @Table
 @ToString
 public class Book extends BaseModel {
@@ -22,18 +20,14 @@ public class Book extends BaseModel {
     private String publisher;
     private Long Circulation;
 
-    @ManyToMany
-    @JoinTable(
-            name = "j_book_subject"
-            ,joinColumns ={@JoinColumn(name ="fk_subject")}
-            ,inverseJoinColumns = {@JoinColumn(name = "fk_book")}
-    )
-    private List<Subject> subjects = new ArrayList<>();
+    @ManyToOne
+
+    private Subject subjects;
 
     @ManyToOne
     @JoinColumn(name = "registration_librarian")
     private Librarian librarian;
     @ManyToOne
     @JoinColumn(name="borrowing_member")
-    private Member member;
+    private Memberss member;
 }
