@@ -4,7 +4,10 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -15,5 +18,6 @@ import javax.persistence.Table;
 @ToString
 @SuperBuilder
 public class Member extends Person {
-
+    @OneToMany(mappedBy = "member")
+    private List<Book> books = new ArrayList<>();
 }
