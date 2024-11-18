@@ -31,9 +31,9 @@ public class Book extends BaseModel {
     private List<Subject> subjects = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "fk_librarian")
+    @JoinColumn(name = "registration_librarian")
     private Librarian librarian;
     @ManyToOne
-    @JoinColumn(name="fk_member")
+    @JoinColumn(name="borrowing_member")
     private Member member;
 }

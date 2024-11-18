@@ -14,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@SuperBuilder
 public class Librarian extends Person {
     @OneToMany(mappedBy = "librarian")
     private List<Book> books = new ArrayList<>();
