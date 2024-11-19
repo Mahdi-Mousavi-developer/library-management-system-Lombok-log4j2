@@ -10,9 +10,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Table
-
 public class Book extends BaseModel {
     private String title;
     private String author;
@@ -21,7 +19,6 @@ public class Book extends BaseModel {
     private Long Circulation;
 
     @ManyToOne
-
     private Subject subjects;
 
     @ManyToOne
@@ -33,15 +30,16 @@ public class Book extends BaseModel {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "Book{" +"\u001B[34m"+
+                "id= "+getId().toString()+
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", Circulation=" + Circulation +
-                ", subjects=" + subjects +
+                ", subjects=" + subjects +"\u001B[34m"+
                 ", librarian=" + librarian +
-                ", member=" + member +
+                ", member=" + member+"\u001B[0m"+
                 '}';
     }
 }

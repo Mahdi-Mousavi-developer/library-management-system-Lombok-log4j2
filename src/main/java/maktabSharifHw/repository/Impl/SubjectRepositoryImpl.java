@@ -1,12 +1,15 @@
 package maktabSharifHw.repository.Impl;
 
 import maktabSharifHw.Exception.GenerallyNotFoundException;
+import maktabSharifHw.model.Book;
+import maktabSharifHw.model.Person;
 import maktabSharifHw.model.Subject;
 import maktabSharifHw.util.EntityManagerProvider;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,5 +103,23 @@ public class SubjectRepositoryImpl implements maktabSharifHw.repository.SubjectR
         Query query = entityManagerProvider.getEntityManager().createQuery("select c from Subject c where books.size >=1");
          List<Subject> subjects = query.getResultList();
         return subjects;
+    }
+
+    @Override
+    public void deleteBookBySubjectId(long id) throws GenerallyNotFoundException {
+        EntityManager entityManager = entityManagerProvider.getEntityManager();
+        Query query = null;
+        EntityTransaction transaction = entityManager.getTransaction();
+        Subject subject = entityManager.find(Subject.class,id);
+        try {
+            transaction.begin();
+            query = entityManager.createQuery("delete from Book b where b.subjects=?1");
+            query.setParameter(1,subject);
+            query.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            throw new GenerallyNotFoundException("Subject not found");
+        }
+
     }
 }

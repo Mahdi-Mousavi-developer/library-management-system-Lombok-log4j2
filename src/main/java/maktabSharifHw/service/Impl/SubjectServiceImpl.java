@@ -46,6 +46,7 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public void deleteSubject(long id) throws GenerallyNotFoundException {
         try {
+            subjectRepository.deleteBookBySubjectId(id);
             subjectRepository.delete(id);
         } catch (Exception e) {
             throw new GenerallyNotFoundException("subject not founded");

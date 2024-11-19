@@ -1,6 +1,6 @@
 package maktabSharifHw;
 
-import maktabSharifHw.model.*;
+
 import maktabSharifHw.repository.BookRepository;
 import maktabSharifHw.repository.Impl.BookRepositoryImpl;
 import maktabSharifHw.repository.Impl.MemberRepositoryImpl;
@@ -8,6 +8,8 @@ import maktabSharifHw.repository.Impl.MemberRepositoryImpl;
 import maktabSharifHw.repository.Impl.SubjectRepositoryImpl;
 import maktabSharifHw.repository.MemberRepository;
 import maktabSharifHw.repository.SubjectRepository;
+import maktabSharifHw.service.BookService;
+import maktabSharifHw.service.Impl.BookServiceImpl;
 import maktabSharifHw.service.Impl.SubjectServiceImpl;
 import maktabSharifHw.service.SubjectService;
 import maktabSharifHw.util.EntityManagerProvider;
@@ -16,7 +18,7 @@ import maktabSharifHw.util.Menu;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -28,9 +30,8 @@ public class Main {
         BookRepository bookRepository = new BookRepositoryImpl(entityManagerProvider);
         MemberRepository memberRepository = new MemberRepositoryImpl(entityManagerProvider);
         SubjectService subjectService = new SubjectServiceImpl(subjectRepository);
-//        subjectService.showSubjectsWhoHaveOneBook();
-//        subjectService.printAllSubjects();
 
+        BookService bookService = new BookServiceImpl(bookRepository);
 
         Menu.mainMenu();
     }
