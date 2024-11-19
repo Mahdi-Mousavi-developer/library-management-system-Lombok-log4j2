@@ -13,10 +13,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-
-public abstract class  Person extends BaseModel {
-
+@NamedQuery(name = "Person.findByUsernamePassword", query = "from Person where username=?1 and password=?2")
+public class Person extends BaseModel {
+    @Column(unique = true)
     private String username;
+    @Column(unique = true)
     private String password;
     @Column(name = "first_name")
     private String firstName;

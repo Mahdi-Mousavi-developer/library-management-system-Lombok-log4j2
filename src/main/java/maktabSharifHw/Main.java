@@ -1,8 +1,13 @@
 package maktabSharifHw;
 
 import maktabSharifHw.model.Book;
+import maktabSharifHw.model.Gender;
+import maktabSharifHw.model.Memberss;
+import maktabSharifHw.model.Role;
 import maktabSharifHw.repository.BookRepository;
 import maktabSharifHw.repository.Impl.BookRepositoryImpl;
+import maktabSharifHw.repository.Impl.MemberRepositoryImpl;
+import maktabSharifHw.repository.MemberRepository;
 import maktabSharifHw.util.EntityManagerProvider;
 
 import javax.persistence.EntityManager;
@@ -17,7 +22,14 @@ public class Main {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityManagerProvider entityManagerProvider = new EntityManagerProvider();
         BookRepository bookRepository = new BookRepositoryImpl(entityManagerProvider);
+        MemberRepository memberRepository = new MemberRepositoryImpl(entityManagerProvider);
         try {
+            Memberss member = new Memberss();
+            member.setUsername("mahdi");
+            member.setPassword("mahdi");
+            member.setRole(Role.MEMBER);
+            memberRepository.saveOrUpdate(member);
+            Role role = memberRepository.FindByUsernameAndPassword(member);
             Book book = new Book();
             book.setAuthor("Mahdi");
             book.setTitle("mowe");
@@ -30,6 +42,7 @@ public class Main {
            for (Book bookfound : bookList) {
                System.out.println(bookfound);
            }
+            System.out.println(role);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
