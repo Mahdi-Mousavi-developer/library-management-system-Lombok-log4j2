@@ -96,13 +96,6 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public List<Book> getAll() throws Exception {
-        EntityManager entityManager = entityManagerProvider.getEntityManager();
-        Query query = null;
-        try {
-            query = entityManager.createQuery("select c from Book c");
-        } catch (Exception e) {
-            throw new GenerallyNotFoundException("Book not found");
-        }
-        return query.getResultList();
+        return entityManagerProvider.getEntityManager().createQuery("select a from Book a").getResultList();
     }
 }

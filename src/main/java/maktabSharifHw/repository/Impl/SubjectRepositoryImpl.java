@@ -2,7 +2,6 @@ package maktabSharifHw.repository.Impl;
 
 import maktabSharifHw.Exception.GenerallyNotFoundException;
 import maktabSharifHw.model.Subject;
-import maktabSharifHw.repository.SubjectRepository;
 import maktabSharifHw.util.EntityManagerProvider;
 
 import javax.persistence.EntityManager;
@@ -11,10 +10,10 @@ import javax.persistence.Query;
 import java.util.List;
 import java.util.Optional;
 
-public class SubjectBookRepository implements SubjectRepository {
+public class SubjectRepositoryImpl implements maktabSharifHw.repository.SubjectRepository {
     EntityManagerProvider entityManagerProvider;
 
-    public SubjectBookRepository(EntityManagerProvider entityManagerProvider) {
+    public SubjectRepositoryImpl(EntityManagerProvider entityManagerProvider) {
         this.entityManagerProvider = entityManagerProvider;
     }
     @Override
@@ -38,7 +37,6 @@ public class SubjectBookRepository implements SubjectRepository {
             foundedSubject.get().setSubjectTitle(object.getSubjectTitle());
             foundedSubject.get().setSubjectDescription(object.getSubjectDescription());
             foundedSubject.get().setBooks(object.getBooks());
-            foundedSubject.get().setCreate_time(object.getCreate_time());
             entityManager.persist(foundedSubject);
             transaction.commit();
         } catch (Exception e) {
@@ -98,5 +96,12 @@ public class SubjectBookRepository implements SubjectRepository {
             throw new GenerallyNotFoundException("Subject not found");
         }
         return query.getResultList();
+    }
+
+    @Override
+    public List<Subject> ShowSubjectsWhoHaveOneBook() {
+        Query query = entityManagerProvider.getEntityManager().createQuery("select c from Subject c where books.size >=1");
+         List<Subject> subjects = query.getResultList();
+        return subjects;
     }
 }

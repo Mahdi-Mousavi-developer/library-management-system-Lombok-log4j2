@@ -1,10 +1,10 @@
 package maktabSharifHw.repository;
 
-import maktabSharifHw.model.Book;
 import maktabSharifHw.model.Memberss;
 import maktabSharifHw.model.Person;
-import maktabSharifHw.model.Role;
+
+import java.util.Optional;
 
 public interface MemberRepository extends BaseRepository<Memberss> {
-    Role FindByUsernameAndPassword (Person person);
+    Optional<Person> FindByUsernameAndPassword (String username , String password);
 }

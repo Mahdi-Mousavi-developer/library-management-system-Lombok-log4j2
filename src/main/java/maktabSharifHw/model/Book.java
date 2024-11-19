@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 
 @Table
-@ToString
+
 public class Book extends BaseModel {
     private String title;
     private String author;
@@ -30,4 +30,18 @@ public class Book extends BaseModel {
     @ManyToOne
     @JoinColumn(name="borrowing_member")
     private Memberss member;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", Circulation=" + Circulation +
+                ", subjects=" + subjects +
+                ", librarian=" + librarian +
+                ", member=" + member +
+                '}';
+    }
 }

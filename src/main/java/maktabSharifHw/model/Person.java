@@ -34,4 +34,18 @@ public class Person extends BaseModel {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", nationalCode='" + nationalCode + '\'' +
+                ", gender=" + gender +
+                ", dob=" + dob +
+                ", address=" + address +
+                ", role=" + role +
+                '}';
+    }
 }
