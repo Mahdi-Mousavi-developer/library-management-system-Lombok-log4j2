@@ -3,6 +3,7 @@ package maktabSharifHw.repository.Impl;
 import maktabSharifHw.Exception.GenerallyNotFoundException;
 import maktabSharifHw.model.Memberss;
 import maktabSharifHw.model.Person;
+import maktabSharifHw.model.Subject;
 import maktabSharifHw.repository.MemberRepository;
 import maktabSharifHw.util.EntityManagerProvider;
 
@@ -57,22 +58,19 @@ public class MemberRepositoryImpl implements MemberRepository {
         EntityManager entityManager = entityManagerProvider.getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            Optional<Memberss> foundedMemberss = this.findById(object.getId());
-            if (!foundedMemberss.isPresent()) {
-                throw new GenerallyNotFoundException("Member not found");
-            }
+            Memberss foundedMemberss = entityManager.find(Memberss.class,object.getId());
             transaction.begin();
-            foundedMemberss.get().setBooks(object.getBooks());
-            foundedMemberss.get().setAddress(object.getAddress());
-            foundedMemberss.get().setDob(object.getDob());
-            foundedMemberss.get().setFirstName(object.getFirstName());
-            foundedMemberss.get().setLastName(object.getLastName());
-            foundedMemberss.get().setCreate_time(object.getCreate_time());
-            foundedMemberss.get().setGender(object.getGender());
-            foundedMemberss.get().setNationalCode(object.getNationalCode());
-            foundedMemberss.get().setPassword(object.getPassword());
-            foundedMemberss.get().setRole(object.getRole());
-            foundedMemberss.get().setUsername(object.getUsername());
+            foundedMemberss.setBooks(object.getBooks());
+            foundedMemberss.setAddress(object.getAddress());
+            foundedMemberss.setDob(object.getDob());
+            foundedMemberss.setFirstName(object.getFirstName());
+            foundedMemberss.setLastName(object.getLastName());
+            foundedMemberss.setCreate_time(object.getCreate_time());
+            foundedMemberss.setGender(object.getGender());
+            foundedMemberss.setNationalCode(object.getNationalCode());
+            foundedMemberss.setPassword(object.getPassword());
+            foundedMemberss.setRole(object.getRole());
+            foundedMemberss.setUsername(object.getUsername());
             entityManager.persist(foundedMemberss);
             transaction.commit();
         } catch (Exception e) {
@@ -86,13 +84,10 @@ public class MemberRepositoryImpl implements MemberRepository {
     public void delete(Long id) throws Exception {
         EntityManager entityManager = entityManagerProvider.getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
-        Optional<Memberss> optionalMemberss = findById(id);
-        if (!this.findById(id).isPresent()) {
-            throw new GenerallyNotFoundException("Member not found");
-        }
+        Memberss foundedMemberss = entityManager.find(Memberss.class,id);
         try {
             transaction.begin();
-            entityManager.remove(optionalMemberss);
+            entityManager.remove(foundedMemberss);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();

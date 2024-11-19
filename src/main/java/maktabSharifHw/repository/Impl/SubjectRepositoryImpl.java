@@ -29,14 +29,11 @@ public class SubjectRepositoryImpl implements maktabSharifHw.repository.SubjectR
         EntityManager entityManager = entityManagerProvider.getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            Optional<Subject> foundedSubject = this.findById(object.getId());
-            if (!foundedSubject.isPresent()) {
-                throw new GenerallyNotFoundException("Subject not found");
-            }
+            Subject foundedSubject = entityManager.find(Subject.class,object.getId());
             transaction.begin();
-            foundedSubject.get().setSubjectTitle(object.getSubjectTitle());
-            foundedSubject.get().setSubjectDescription(object.getSubjectDescription());
-            foundedSubject.get().setBooks(object.getBooks());
+            foundedSubject.setSubjectTitle(object.getSubjectTitle());
+            foundedSubject.setSubjectDescription(object.getSubjectDescription());
+            foundedSubject.setBooks(object.getBooks());
             entityManager.persist(foundedSubject);
             transaction.commit();
         } catch (Exception e) {
@@ -64,13 +61,13 @@ public class SubjectRepositoryImpl implements maktabSharifHw.repository.SubjectR
     public void delete(Long id) throws Exception {
         EntityManager entityManager = entityManagerProvider.getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
-        Optional<Subject> optionalSubject = this.findById(id);
+        Subject subject = entityManager.find(Subject.class,id);
         if (!this.findById(id).isPresent()) {
             throw new GenerallyNotFoundException("Subject not found");
         }
         try {
             transaction.begin();
-            entityManager.remove(optionalSubject);
+            entityManager.remove(subject);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();

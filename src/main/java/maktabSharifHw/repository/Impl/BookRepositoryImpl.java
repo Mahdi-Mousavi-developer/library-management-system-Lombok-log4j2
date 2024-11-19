@@ -2,6 +2,7 @@ package maktabSharifHw.repository.Impl;
 
 import maktabSharifHw.Exception.GenerallyNotFoundException;
 import maktabSharifHw.model.Book;
+import maktabSharifHw.model.Memberss;
 import maktabSharifHw.repository.BookRepository;
 import maktabSharifHw.util.EntityManagerProvider;
 
@@ -31,20 +32,17 @@ public class BookRepositoryImpl implements BookRepository {
         EntityManager entityManager = entityManagerProvider.getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
-            Optional<Book> foundedBook = this.findById(object.getId());
-            if (!foundedBook.isPresent()) {
-                throw new GenerallyNotFoundException("Book not found");
-            }
+            Book foundedBook = entityManager.find(Book.class,object.getId());
             transaction.begin();
-            foundedBook.get().setTitle(object.getTitle());
-            foundedBook.get().setAuthor(object.getAuthor());
-            foundedBook.get().setIsbn(object.getIsbn());
-            foundedBook.get().setPublisher(object.getPublisher());
-            foundedBook.get().setCirculation(object.getCirculation());
-            foundedBook.get().setLibrarian(object.getLibrarian());
-            foundedBook.get().setMember(object.getMember());
-            foundedBook.get().setCreate_time(object.getCreate_time());
-            foundedBook.get().setSubjects(object.getSubjects());
+            foundedBook.setTitle(object.getTitle());
+            foundedBook.setAuthor(object.getAuthor());
+            foundedBook.setIsbn(object.getIsbn());
+            foundedBook.setPublisher(object.getPublisher());
+            foundedBook.setCirculation(object.getCirculation());
+            foundedBook.setLibrarian(object.getLibrarian());
+            foundedBook.setMember(object.getMember());
+            foundedBook.setCreate_time(object.getCreate_time());
+            foundedBook.setSubjects(object.getSubjects());
             entityManager.persist(foundedBook);
             transaction.commit();
         } catch (Exception e) {
@@ -72,13 +70,10 @@ public class BookRepositoryImpl implements BookRepository {
     public void delete(Long id) throws Exception {
         EntityManager entityManager = entityManagerProvider.getEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
-        Optional<Book> optionalBook = findById(id);
-        if (!this.findById(id).isPresent()) {
-            throw new GenerallyNotFoundException("Book not found");
-        }
+        Book foundedBook = entityManager.find(Book.class,id);
         try {
             transaction.begin();
-            entityManager.remove(optionalBook);
+            entityManager.remove(foundedBook);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();

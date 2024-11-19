@@ -17,4 +17,11 @@ public class BaseModel {
     @Column(name = "create_time")
     private Date create_time;
 
+    @Override
+    public String toString() {
+        return "BaseModel{" +
+                "id=" + id +
+                ", create_time=" + create_time +
+                '}';
+    }
 }
