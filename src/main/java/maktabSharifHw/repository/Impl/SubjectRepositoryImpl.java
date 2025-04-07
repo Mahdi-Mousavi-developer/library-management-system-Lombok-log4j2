@@ -1,15 +1,12 @@
 package maktabSharifHw.repository.Impl;
 
-import maktabSharifHw.Exception.GenerallyNotFoundException;
-import maktabSharifHw.model.Book;
-import maktabSharifHw.model.Person;
+import maktabSharifHw.exception.GenerallyNotFoundException;
 import maktabSharifHw.model.Subject;
 import maktabSharifHw.util.EntityManagerProvider;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 

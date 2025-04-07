@@ -1,6 +1,6 @@
 package maktabSharifHw.service.Impl;
 
-import maktabSharifHw.Exception.GenerallyNotFoundException;
+import maktabSharifHw.exception.GenerallyNotFoundException;
 import maktabSharifHw.model.Book;
 import maktabSharifHw.model.Subject;
 import maktabSharifHw.repository.BookRepository;

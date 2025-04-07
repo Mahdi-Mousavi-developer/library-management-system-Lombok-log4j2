@@ -1,7 +1,6 @@
 package maktabSharifHw.repository;
 
-import maktabSharifHw.Exception.GenerallyNotFoundException;
-import maktabSharifHw.model.Book;
+import maktabSharifHw.exception.GenerallyNotFoundException;
 import maktabSharifHw.model.Subject;
 
 import java.util.List;

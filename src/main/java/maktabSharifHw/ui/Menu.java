@@ -1,8 +1,8 @@
-package maktabSharifHw.util;
+package maktabSharifHw.ui;
 
 
-import maktabSharifHw.Exception.GenerallyNotFoundException;
-import maktabSharifHw.model.Person;
+import maktabSharifHw.exception.GenerallyNotFoundException;
+
 import maktabSharifHw.model.Role;
 import maktabSharifHw.repository.BookRepository;
 import maktabSharifHw.repository.Impl.BookRepositoryImpl;
@@ -14,15 +14,12 @@ import maktabSharifHw.service.BookService;
 import maktabSharifHw.service.Impl.BookServiceImpl;
 import maktabSharifHw.service.Impl.MemberServiceImpl;
 import maktabSharifHw.service.Impl.SubjectServiceImpl;
+import maktabSharifHw.util.EntityManagerProvider;
+import maktabSharifHw.util.utility;
 
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Optional;
 import java.util.Scanner;
 
-import static javafx.application.Platform.exit;
+
 
 public class Menu {
     static EntityManagerProvider entityManagerProvider = new EntityManagerProvider();
@@ -73,7 +70,8 @@ public class Menu {
             System.out.println("\u001B[31m" + "**************member menu**************" + "\u001B[0m");
             System.out.println("1-> see all subjects");
             System.out.println("2 -> see subjects that have at least one book");
-            System.out.println("3 -> exit to login page");
+            System.out.println("3 -> see all book information");
+            System.out.println("4 -> exit to login page");
             int choose2 = scan.nextInt();
             scan.nextLine();
             if (choose2 == 1) {
@@ -85,6 +83,12 @@ public class Menu {
             } else if (choose2 == 2) {
                 subjectService.showSubjectsWhoHaveOneBook();
             } else if (choose2 == 3) {
+                try {
+                    bookService.printAllBook();
+                } catch (GenerallyNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (choose2==4) {
                 logInMenu();
             }
         }

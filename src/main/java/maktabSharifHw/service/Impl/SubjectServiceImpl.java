@@ -1,16 +1,14 @@
 package maktabSharifHw.service.Impl;
 
-import maktabSharifHw.Exception.GenerallyNotFoundException;
+import maktabSharifHw.exception.GenerallyNotFoundException;
 import maktabSharifHw.model.Subject;
 import maktabSharifHw.repository.Impl.SubjectRepositoryImpl;
 import maktabSharifHw.repository.SubjectRepository;
 import maktabSharifHw.service.SubjectService;
 import maktabSharifHw.util.EntityManagerProvider;
 
-import javax.management.Query;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public class SubjectServiceImpl implements SubjectService {
     EntityManagerProvider entityManagerProvider = new EntityManagerProvider();
@@ -30,16 +28,6 @@ public class SubjectServiceImpl implements SubjectService {
         }
         for (Subject subject : subjectList) {
             System.out.println(subject);
-        }
-    }
-
-    @Override
-    public void printSubjectById(long id) throws GenerallyNotFoundException {
-        Optional<Subject> subject = subjectRepository.findById(id);
-        if (subject.isPresent()) {
-            System.out.println(subject.get());
-        } else {
-            throw new GenerallyNotFoundException("subject not founded");
         }
     }
 

@@ -1,6 +1,6 @@
 package maktabSharifHw.service;
 
-import maktabSharifHw.Exception.GenerallyNotFoundException;
+import maktabSharifHw.exception.GenerallyNotFoundException;
 
 public interface BookService {
     void printAllBook() throws GenerallyNotFoundException;

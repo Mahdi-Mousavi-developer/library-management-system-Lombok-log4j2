@@ -1,9 +1,8 @@
 package maktabSharifHw.repository.Impl;
 
-import maktabSharifHw.Exception.GenerallyNotFoundException;
+import maktabSharifHw.exception.GenerallyNotFoundException;
 import maktabSharifHw.model.Memberss;
 import maktabSharifHw.model.Person;
-import maktabSharifHw.model.Subject;
 import maktabSharifHw.repository.MemberRepository;
 import maktabSharifHw.util.EntityManagerProvider;
 
@@ -23,7 +22,7 @@ public class MemberRepositoryImpl implements MemberRepository {
     }
 
     @Override
-    public Optional<Person> FindByUsernameAndPassword(String username , String password) {
+    public Optional<Person> FindByUsernameAndPassword(String username , String password)throws Exception {
         EntityManager entityManager = EntityManagerProvider.getEntityManager();
         TypedQuery<Person> personFounded = entityManager.createNamedQuery("Person.findByUsernamePassword", Person.class);
         personFounded.setParameter(1, username);

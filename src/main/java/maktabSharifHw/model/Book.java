@@ -31,15 +31,13 @@ public class Book extends BaseModel {
     @Override
     public String toString() {
         return "Book{" +"\u001B[34m"+
-                "id= "+getId().toString()+
-                "title='" + title + '\'' +
+                "id="+getId().toString()+
+                " title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
                 ", Circulation=" + Circulation +
-                ", subjects=" + subjects +"\u001B[34m"+
-                ", librarian=" + librarian +
-                ", member=" + member+"\u001B[0m"+
+                ", subjects=" + subjects +
                 '}';
     }
 }

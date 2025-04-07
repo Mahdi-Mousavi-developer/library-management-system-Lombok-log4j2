@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Librarian extends Person {
     @OneToMany(mappedBy = "librarian")
     private List<Book> books = new ArrayList<>();
